@@ -1,4 +1,3 @@
-#-*-coding:iso-8859-1-*-
 """
 _cmd is an import, wich alowes, to make commands from cmdline and
 get the output back in pythonfile
