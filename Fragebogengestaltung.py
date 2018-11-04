@@ -2,7 +2,6 @@ from random import randint as ran
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
-eintr=list()
 stelleInFrame=0
 master=Tk()
 master.geometry("1000x707+-7+0")
@@ -17,8 +16,8 @@ dotscr=Scrollbar(dotfr,orient=VERTICAL)
 dotText=Text(dotfr,width=110,height=30,yscrollcommand=dotscr.set)
 dotscr.config(command=dotText.yview)
 Label(master,text="° ist Enter im Programm.").place(x=300,y=5)
+saveLabel=Label(master,text="nicht gespeichert")
 def appendNew():
-    ibaba=True
     st=newEntry.get("1.0",END)
     new_list=[]
     for int1 in st:
@@ -30,7 +29,6 @@ def appendNew():
     new_entr=sn.split("°°")
     
     for i in new_entr:
-        ibaba=False
         dotText.insert(END,"  -"+i+"\n")
     del(sl)
     del(sk)
@@ -68,6 +66,8 @@ def zufalls_():
     del(kop)
     del(kop_)
     def save_file():
+        saaa=savtext_.get("1.0",END)
+        savwin.destroy()
         nonlocal op
         file_name = filedialog.askdirectory()
         tk=Tk()
@@ -80,9 +80,10 @@ def zufalls_():
             nonlocal op
             file=file_name+"/"+dn_.get()+".txt"
             l=open(file,"a")
-            l.write(op)
+            l.write(saaa)
             l.close()
             tk.destroy()
+            saveLabel.config(text="gespeichert")
         sb=Button(tk,text="Fertig",command=save,width=37,height=4).place(x=10,y=50)
         dn_.place(x=77,y=5)
         tk.mainloop()
@@ -103,4 +104,5 @@ zuweisen=Button(master,text="Zuweisen",width=18,height=4,command=zufalls_).place
 dotText.pack(side=RIGHT,fill=Y)
 dotscr.pack(side=LEFT,fill=Y)
 dotfr.place(x=30,y=30)
+saveLabel.place(x=835,y=515)
 mainloop()
